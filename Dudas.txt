@@ -1,0 +1,32 @@
+std::move(array[1])
+array[1] = std::move(array.back());//array back te devuelve el ultimo elemento
+
+
+Dudas
+
+Tema1
+En que momento uso el tad  bintree_eda y treeMap_avl??
+se puede usar el operador ?
+
+-problema4 para extender la clase avl, lo extiendo en el tad o en el cpp
+
+--------------------------------------------------------------------------------------
+tema2
+solucionado
+-en el tad priorityQueue cuando se define el comparador, siempre tiene que ser con el signo menor<, si lo hago con el signo > dijo en clase que podria presentar algun conflicto
+
+(Resp)el comparador de la clase usa el signo <, si queremos que la raiz sea el maximo(monticulo de maximos), cuando se defina el bool operador <..., dentro 
+tendremos podremos usar > para referirnos al maximo
+
+-cual es el coste de flotar y hundir en el tad "indexPQ.h"// (Resp) coste es logN
+
+- Lo que cuesta sumar sumandos pueden alcanzar 1.000.000, se supone que eso alcanzaria para sumar, pero al tener que sumar varios numeros, donde cada numeros
+puede ser entre 1 - 1000000, puede sobrepasarlo por ello se le asigna el valor mas grande para los enteros que es un long long int
+
+un short int  -32,768 y el máximo 32,767
+int puede -2,147,483,648 y el máximo 2,147,483,647 (inclusive)
+long Su valor mínimo es -9,223,372,036,854,775,808 y el máximo 9,223,372,036,854,775,807 (inclusive)
+
+sin solucionar
+
+- Un monticulo puede ser un arbol binario completo

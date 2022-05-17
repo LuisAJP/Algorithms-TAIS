@@ -1,0 +1,263 @@
+class PriorityQueue {
+   
+   std::vector<T> array;     // primer elemento en la posición 1
+   Comparator antes;
+   
+public:
+   
+   PriorityQueue(Comparator c = Comparator()) : array(1), antes(c) {}
+   PriorityQueue(std::vector<T> const& v_ini, Comparator c = Comparator()) :
+   PriorityQueue(PriorityQueue<T, Comparator> const&) = default;
+   PriorityQueue<T, Comparator> & operator=(PriorityQueue<T, Comparator> const&) = default;
+   ~PriorityQueue() = default;
+ 
+   void push(T const& x)						//O(logN)
+   int size() const  							//O(1)
+   bool empty() const { return size() == 0; }	//O(1)	
+   T const& top()  const 						//O(1)
+   void pop() 									//O(logN)
+   void pop(T & prim)
+    
+private:
+   void flotar(int i) 							//O(logN)
+   void hundir(int i) 							//O(logN)
+   void monticulizar() 							//O(NlogN)
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+class IndexPQ {
+public:
+   struct Par {
+      int elem;
+      T prioridad;
+   };
+   
+private:
+   vector<Par> array;     // primer elemento en la posición 1
+   vector<int> posiciones;   // un 0 indica que el elemento no está
+   Comparator antes;
+   
+public:
+   IndexPQ(int N, Comparator c = Comparator()) : array(1), posiciones(N, 0), antes(c) {}
+   IndexPQ(IndexPQ<T,Comparator> const&) = default;
+   IndexPQ<T,Comparator>& operator=(IndexPQ<T,Comparator> const&) = default;
+
+   void push(int e, T const& p) 	//O(logN)
+   void update(int e, T const& p)
+   int size() const 				//O(1)
+   bool empty() const 				//O(1)
+   Par const& top() const 			//O(1)
+   void pop() 						//O(logN)
+
+private:
+   void flotar(int i) 				//O(logN)
+   void hundir(int i)				//O(logN)
+   
+};
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+using Adys = std::vector<int>;  // lista de adyacentes a un vértice
+
+class Grafo {
+   
+   const int _V;   // número de vértices
+   int _E;   // número de aristas
+   std::vector<Adys> _ady;   // vector de listas de adyacentes
+   
+public:
+   
+   
+   Grafo(int v) : _V(v), _E(0), _ady(_V) {}
+   int V() const { return _V; }
+   int E() const { return _E; }
+   
+   
+   void ponArista(int v, int w)   	//O(1)??
+   Adys const& ady(int v) const 	//O(1)??
+   
+----------------------------------------------------------------------------------------------------------------------------------------------
+
+class ConjuntosDisjuntos {
+
+protected:
+    int nelems;           // los elementos son 0 .. nelems-1
+    int ncjtos;           // número de conjuntos disjuntos
+    mutable std::vector<int> id;  // si id[i]>=0 es el padre de i, si no es el tamaño del conjunto de i
+	
+public:
+    
+    ConjuntosDisjuntos(int N) : nelems(N), ncjtos(nelems), id(nelems, -1) {}
+    int num_cjtos() const { return ncjtos; }
+	
+    int buscar(int p) const                  	//O(1)              
+    void unir(int p, int q)						//O(n)
+    int tam(int p) const 
+    bool unidos(int p, int q) const
+
+    
+};
+-------------------------------------------------------------------------------------------------------------------------------------------------
+GRAFO VALORADO
+
+class Arista {
+public:
+   Arista();
+   Arista(int v, int w, Valor valor);
+   int uno() const;
+   int otro(int vert) const;
+   Valor valor() const;
+   void print(std::ostream & o = std::cout) const;
+private:
+   std::shared_ptr<Arista_impl<Valor>> pimpl;
+};
+
+inline std::ostream & operator<<(std::ostream & o, Arista<Valor> const& ar)
+inline bool operator<(Arista<Valor> const& a, Arista<Valor> const& b) 
+inline bool operator>(Arista<Valor> const& a, Arista<Valor> const& b)
+using AdysVal = std::vector<Arista<Valor>>;  // lista de adyacentes a un vértice
+
+
+class GrafoValorado {
+public:
+   GrafoValorado(int v) : _V(v), _E(0), _ady(_V) {}
+   int V() const { return _V; }
+   int E() const { return _E; }
+   void ponArista(Arista<Valor> const& arista);
+   AdysVal<Valor> const& ady(int v) const;
+   void print(std::ostream & o = std::cout) const;
+   
+private:
+   const int _V;   // número de vértices
+   int _E;   // número de aristas
+   std::vector<AdysVal<Valor>> _ady;   // vector de listas de adyacentes
+   
+};
+
+std::ostream & operator<<(std::ostream & o, GrafoValorado<Valor> const& g);
+Arista<Valor>::Arista()
+Arista<Valor>::Arista(int v, int w, Valor valor)
+int Arista<Valor>::uno() const { return pimpl->uno(); }
+int Arista<Valor>::otro(int vert) const { return pimpl->otro(vert); }
+Valor Arista<Valor>::valor() const { return pimpl->valor(); }
+void Arista<Valor>::print(std::ostream & o) const { pimpl->print(o); }
+
+
+class Arista_impl {
+public:
+   Arista_impl(int v, int w, Valor valor) : v(v), w(w), _valor(valor) {}
+   int uno() const { return v; }
+   int otro(int vert) const { return (vert == v) ? w : v; }
+   Valor valor() const { return _valor; }
+   void print(std::ostream& o = std::cout) const
+   }
+private:
+   int v, w;
+   Valor _valor;
+};
+
+void GrafoValorado<Valor>::ponArista(Arista<Valor> const& arista)
+AdysVal<Valor> const& GrafoValorado<Valor>::ady(int v) const
+void GrafoValorado<Valor>::print(std::ostream & o) const
+inline std::ostream & operator<<(std::ostream & o, GrafoValorado<Valor> const& g) 
+
+
+--------------------------------------------------------------------------------------------------------------------------
+GRAFO DIRIGIDO
+
+using Adys = std::vector<int>;
+
+class GrafoDirigido {
+   
+   const int _V;   // número de vértices
+   int _E;   // número de aristas
+   std::vector<Adys> _ady;   // vector de listas de adyacentes
+   
+public:
+   
+   GrafoDirigido(int v) : _V(v), _E(0), _ady(_V) {}
+   int V() const { return _V; }
+   int E() const { return _E; }
+   void ponArista(int v, int w) 
+   bool hayArista(int u, int v) const
+   Adys const& ady(int v) const 
+   GrafoDirigido inverso() const 
+   void print(std::ostream& o = std::cout) const {
+    
+};
+inline std::ostream & operator<<(std::ostream & o, GrafoDirigido const& g)
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+class AristaDirigida_impl;
+
+class AristaDirigida {
+public:
+   AristaDirigida();
+   AristaDirigida(int v, int w, Valor valor);
+   int from() const;
+   int to() const;
+   Valor valor() const;
+   void print(std::ostream & o = std::cout) const;
+   
+private:
+   std::shared_ptr<AristaDirigida_impl<Valor>> pimpl;
+};
+
+inline std::ostream & operator<<(std::ostream & o, AristaDirigida<Valor> const& ar)
+inline bool operator<(AristaDirigida<Valor> const& a, AristaDirigida<Valor> const& b)
+inline bool operator>(AristaDirigida<Valor> const& a, AristaDirigida<Valor> const& b){..}
+using AdysDirVal = std::vector<AristaDirigida<Valor>>;  // lista de adyacentes a un vértice
+
+
+
+class GrafoDirigidoValorado {
+public:
+   
+   GrafoDirigidoValorado(int v) : _V(v), _E(0), _ady(_V) {}
+   int V() const { return _V; }
+   int E() const { return _E; }
+   void ponArista(AristaDirigida<Valor> arista);
+   bool hayArista(int v, int w) const;
+   AdysDirVal<Valor> const& ady(int v) const;
+   GrafoDirigidoValorado<Valor> inverso() const;
+   void print(std::ostream & o = std::cout) const;
+   
+private:
+   const int _V;   // número de vértices
+   int _E;   // número de aristas
+   std::vector<AdysDirVal<Valor>> _ady;   // vector de listas de adyacentes
+   
+};
+
+inline std::ostream & operator<<(std::ostream & o, GrafoDirigidoValorado<Valor> const& g)
+AristaDirigida<Valor>::AristaDirigida(): pimpl(nullptr) {}
+AristaDirigida<Valor>::AristaDirigida(int v, int w, Valor valor): pimpl(std::make_shared<AristaDirigida_impl<Valor>>(v, w, valor)) {}
+int AristaDirigida<Valor>::from() const { return pimpl->from(); }
+int AristaDirigida<Valor>::to() const { return pimpl->to(); }
+Valor AristaDirigida<Valor>::valor() const { return pimpl->valor(); }
+void AristaDirigida<Valor>::print(std::ostream & o) const { pimpl->print(o); }
+
+
+
+class AristaDirigida_impl {
+public:
+   AristaDirigida_impl(int v, int w, Valor valor) : v(v), w(w), _valor(valor) {};
+   int from() const { return v; }
+   int to() const { return w; }
+   Valor valor() const { return _valor; }
+   void print(std::ostream& o) const 
+private:
+   int v, w;
+   Valor _valor;
+};
+
+void GrafoDirigidoValorado<Valor>::ponArista(AristaDirigida<Valor> arista)
+bool GrafoDirigidoValorado<Valor>::hayArista(int v, int w) const 
+AdysDirVal<Valor> const& GrafoDirigidoValorado<Valor>::ady(int v) const 
+GrafoDirigidoValorado<Valor> GrafoDirigidoValorado<Valor>::inverso() const 
+void GrafoDirigidoValorado<Valor>::print(std::ostream & o) const 
+

@@ -1,0 +1,8 @@
+
+El coste de recorrer todos los nodos de un arbol binario es lineal
+
+Arbol equilibrado Es cuando la diferencia de las alturas del hijo iz y dr es como mucho 1
+
+Arbol avl cuando cumple la condicion de equilibrio y ademas por ser de busqueda tambien se cumple que la clave almacenada en la raiz de cualquier subarbol es estrictamente
+mayor que todas las claves en su hijo izquierdo y estrictamente menor que todas las claves en su hijo
+derecho.
