@@ -1,9 +1,0 @@
-
-
-no podemos depender por donde tenemos que pintar
-pero una vez pintado podemos decidir poner los guardias 
-en un color por cada componente conexa 
-
-
-
-Por que no es correcto de pintar al final lo que ha salido y quedarnos con el menor
